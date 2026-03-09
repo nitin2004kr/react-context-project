@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { recepecontext } from "../context/ReceipeContext";
+import { toast } from "react-toastify";
 
 function CreateRecepies() {
   const { register, handleSubmit, reset } = useForm();
@@ -11,7 +12,7 @@ function CreateRecepies() {
     recepe.id = nanoid();
 
     setData([...data, recepe]);
-
+    toast.success('Recipe Added!')
     reset();
   };
 
