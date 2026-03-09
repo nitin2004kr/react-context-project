@@ -12,7 +12,13 @@ function CreateRecepies() {
     recepe.id = nanoid();
 
     setData([...data, recepe]);
-    toast.success('Recipe Added!')
+    toast.success("Recipe Added!", {
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      className: "w-48 min-h-[20px]",
+    });
     reset();
   };
 
@@ -86,13 +92,13 @@ function CreateRecepies() {
         <div className="flex flex-col mt-1">
           <select {...register("category")} className="border-b py-3 outline-0">
             <option value={"cat-1"} className="text-black">
-              Category 1
+              Veg
             </option>
             <option value={"cat-2"} className="text-black">
-              Category 2
+              Non-Veg
             </option>
             <option value={"cat-3"} className="text-black">
-              Category 3
+              Fast Food
             </option>
           </select>
           <small className="text-red-400 text-xs pt-1">This is error</small>
