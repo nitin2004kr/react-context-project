@@ -3,7 +3,7 @@ import Mainroutes from "./routes/Mainroutes";
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-zinc-800 text-white font-thin px-[20%] py-[1%]">
+    <div className="w-screen min-h-[100vh] bg-zinc-800 text-white font-thin px-[1%] py-[1%] overflow-x-hidden">
       <Mainroutes />
     </div>
   );

@@ -20,9 +20,9 @@ function Navbar() {
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "text-red-400" : "text-white")}
-        to="/recepies"
+        to="/recipes"
       >
-        Recepies
+        Recipes
       </NavLink>
       <NavLink
         className={(e) => (e.isActive ? "text-red-400" : "text-white")}

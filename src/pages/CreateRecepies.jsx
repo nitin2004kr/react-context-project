@@ -3,8 +3,10 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { recepecontext } from "../context/ReceipeContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function CreateRecepies() {
+  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
   const { data, setData } = useContext(recepecontext);
 
@@ -12,19 +14,20 @@ function CreateRecepies() {
     recepe.id = nanoid();
 
     setData([...data, recepe]);
-    toast.success("Recipe Added!", {
-      autoClose: 2000,
+    toast.success("New Recipe Added!", {
+      autoClose: 1200,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       className: "w-48 min-h-[20px]",
     });
+    navigate('/recipes');
     reset();
   };
 
   return (
-    <div>
-      <h1 className="text-center font-semibold text-2xl">Create Recepe</h1>
+    <div className="w-full px-[20%]">
+      <h1 className="text-center font-semibold text-2xl ">Create Recepe</h1>
       <form onSubmit={handleSubmit(submitHandler)}>
         {/* url field  */}
         <div className="flex flex-col ">
@@ -91,13 +94,13 @@ function CreateRecepies() {
         {/* categoyr  */}
         <div className="flex flex-col mt-1">
           <select {...register("category")} className="border-b py-3 outline-0">
-            <option value={"cat-1"} className="text-black">
+            <option value={"Veg"} className="text-black">
               Veg
             </option>
-            <option value={"cat-2"} className="text-black">
+            <option value={"Non-Veg"} className="text-black">
               Non-Veg
             </option>
-            <option value={"cat-3"} className="text-black">
+            <option value={"Fast Food"} className="text-black">
               Fast Food
             </option>
           </select>
