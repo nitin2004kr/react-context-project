@@ -10,7 +10,6 @@ function SingleRecipe() {
 
   const { data, setData } = useContext(recepecontext);
   const recipe = data.find((r) => r.id == id);
-  console.log("single recipe = ", recipe);
 
   const {
     image,
@@ -63,7 +62,7 @@ function SingleRecipe() {
           </div>
 
           <div className="w-1/2">
-            <p className="text-white font-semibold  mb-5">Ingredients</p>
+            <p className="text-white font-semibold  mb-5">Instructions</p>
             {instructions}
           </div>
         </div>

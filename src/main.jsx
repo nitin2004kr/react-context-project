@@ -10,7 +10,14 @@ createRoot(document.getElementById("root")).render(
     <ReceipeContext>
       <BrowserRouter>
         <App />
-        <ToastContainer />
+        <ToastContainer
+          position="top-center"
+          autoClose={1200}
+          hideProgressBar={false}
+          closeOnClick={true}
+          pauseOnHover={true}
+          className="w-48 min-h-[20px]"
+        />
       </BrowserRouter>
     </ReceipeContext>
   </StrictMode>,

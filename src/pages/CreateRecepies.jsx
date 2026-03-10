@@ -1,29 +1,46 @@
 import { nanoid } from "nanoid";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { recepecontext } from "../context/ReceipeContext";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function CreateRecepies() {
   const navigate = useNavigate();
+  const params = useParams();
+  const { mode, id } = params;
+
+  const formMode = mode;
+
   const { register, handleSubmit, reset } = useForm();
   const { data, setData } = useContext(recepecontext);
 
   const submitHandler = (recepe) => {
-    recepe.id = nanoid();
+    if (formMode == "update") {
+      recepe.id = id;
 
-    setData([...data, recepe]);
-    toast.success("New Recipe Added!", {
-      autoClose: 1200,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      className: "w-48 min-h-[20px]",
-    });
-    navigate('/recipes');
+      let updatedRecipe = data?.map((r) =>
+        r.id == id ? { ...r, ...recepe } : r,
+      );
+
+      setData(updatedRecipe);
+
+      toast.info("Recipe Updated!");
+    } else {
+      recepe.id = nanoid();
+      setData([...data, recepe]);
+
+      toast.success("New Recipe Added!");
+    }
+
+    navigate("/recipes");
     reset();
   };
+
+  useEffect(() => {
+    const editData = data.find((r) => r.id == id);
+    reset(editData);
+  }, [id, reset, data]);
 
   return (
     <div className="w-full px-[20%]">

@@ -13,19 +13,19 @@ function Navbar() {
         Home
       </NavLink>
       <NavLink
-        className={(e) => (e.isActive ? "text-red-400" : "text-white")}
+        className={(e) => (e.isActive ? "text-red-400 underline " : "text-white")}
         to="/about"
       >
         About
       </NavLink>
       <NavLink
-        className={(e) => (e.isActive ? "text-red-400" : "text-white")}
+        className={(e) => (e.isActive ? "text-red-400 underline " : "text-white")}
         to="/recipes"
       >
         Recipes
       </NavLink>
       <NavLink
-        className={(e) => (e.isActive ? "text-red-400" : "text-white")}
+        className={(e) => (e.isActive ? "text-red-400 underline " : "text-white")}
         to="/create-recepies"
       >
         Create Recepies
