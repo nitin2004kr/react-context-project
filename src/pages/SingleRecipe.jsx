@@ -2,6 +2,7 @@ import { recepecontext } from "@/context/ReceipeContext";
 import React, { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 
 function SingleRecipe() {
   const params = useParams();
@@ -19,14 +20,28 @@ function SingleRecipe() {
     chef,
     ingredients,
     instructions,
+    fav
   } = recipe;
 
   // delete recipe handler
   const handleRecipeDelete = (id) => {
-    const filterdata = data.filter((r) => r.id != id);
+    const filterdata = data?.filter((r) => r.id != id);
     localStorage.setItem("recipes", JSON.stringify(filterdata));
+    toast.error(`Recipe Deleted !`);
     setData(filterdata);
     navigate("/recipes");
+  };
+  
+  // delete recipe handler
+  const handleFavroute = (id) => {
+    let addedFav = []
+
+      addedFav = data?.map((r) => r.id == id ? {...r , fav : fav == true ? false : true } : r);
+      toast.info(`${fav === true ? "Removed from" : "Added to"} favorites`);
+
+    localStorage.setItem("recipes", JSON.stringify(addedFav));
+    setData(addedFav);
+    navigate("/recipe/favorites");
   };
 
   return (
@@ -70,12 +85,22 @@ function SingleRecipe() {
       </div>
 
       <div className="col-span-8 col-start-5">
-        <div className="w-full flex justify-between">
-          <Button variant="secondary">
-            <Link to={`/recipe/update/${id}`}>Update Recipe</Link>
-          </Button>
-          <Button variant="destructive" onClick={() => handleRecipeDelete(id)}>
-            Delete Recipe
+        <div className="flex">
+          <div className="w-full flex gap-5 ">
+            <Button variant="secondary" className="cursor-pointer">
+              <Link to={`/recipe/update/${id}`}>Update Recipe</Link>
+            </Button>
+            <Button
+              variant="destructive"
+              className="cursor-pointer"
+              onClick={() => handleRecipeDelete(id)}
+            >
+              Delete Recipe
+            </Button>
+          </div>
+
+          <Button variant="default" className="cursor-pointer" onClick={() => handleFavroute(id)}>
+            {`${fav === true ? "Remove from" : "Add to"} favorites`}
           </Button>
         </div>
       </div>

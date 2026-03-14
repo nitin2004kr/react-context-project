@@ -29,6 +29,7 @@ function CreateRecepies() {
       toast.info("Recipe Updated!");
     } else {
       recepe.id = nanoid();
+       recepe.fav = false
 
       localStorage.setItem("recipes", JSON.stringify([...data, recepe]));
       setData([...data, recepe]);

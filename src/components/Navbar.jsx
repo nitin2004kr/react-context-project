@@ -24,6 +24,14 @@ function Navbar() {
       >
         Recipes
       </NavLink>
+
+      <NavLink
+        className={(e) => (e.isActive ? "text-red-400 underline " : "text-white")}
+        to="/recipe/favorites"
+      >
+        Favorites
+      </NavLink>
+
       <NavLink
         className={(e) => (e.isActive ? "text-red-400 underline " : "text-white")}
         to="/create-recepies"
