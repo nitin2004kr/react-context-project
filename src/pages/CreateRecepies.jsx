@@ -23,11 +23,14 @@ function CreateRecepies() {
         r.id == id ? { ...r, ...recepe } : r,
       );
 
+      localStorage.setItem("recipes", JSON.stringify(updatedRecipe));
       setData(updatedRecipe);
 
       toast.info("Recipe Updated!");
     } else {
       recepe.id = nanoid();
+
+      localStorage.setItem("recipes", JSON.stringify([...data, recepe]));
       setData([...data, recepe]);
 
       toast.success("New Recipe Added!");
@@ -38,7 +41,7 @@ function CreateRecepies() {
   };
 
   useEffect(() => {
-    const editData = data.find((r) => r.id == id);
+    const editData = data?.find((r) => r.id == id);
     reset(editData);
   }, [id, reset, data]);
 

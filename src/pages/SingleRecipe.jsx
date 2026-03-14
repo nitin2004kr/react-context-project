@@ -24,6 +24,7 @@ function SingleRecipe() {
   // delete recipe handler
   const handleRecipeDelete = (id) => {
     const filterdata = data.filter((r) => r.id != id);
+    localStorage.setItem("recipes", JSON.stringify(filterdata));
     setData(filterdata);
     navigate("/recipes");
   };
